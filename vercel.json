@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PUBLIC_MEDUSA_BACKEND_URL": "https://printqueen3d.medusajs.app",
+    "NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY": "pk_eabc62d2ba727f7489960bf91707410194df3b408c70ddd1a484132f1a8d90b0",
+    "NEXT_PUBLIC_DEFAULT_REGION": "us",
+    "REVALIDATE_SECRET": "printqueen3d_secret_key"
+  }
+}

@@ -1,125 +1,150 @@
-<p align="center">
-  <a href="https://www.medusajs.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    </picture>
-  </a>
-</p>
+# Print Queen 3D Storefront
 
-<h1 align="center">
-  Medusa Next.js Starter Template
-</h1>
+A professional e-commerce storefront for Print Queen 3D, a Los Angeles-based custom 3D printing business specializing in NFC payment stands, QR code displays, and customized keychains.
 
-<p align="center">
-Combine Medusa's modules for your commerce backend with the newest Next.js 15 features for a performant storefront.</p>
+## 🚀 Quick Start
 
-<p align="center">
-  <a href="https://github.com/medusajs/medusa/blob/master/CONTRIBUTING.md">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs welcome!" />
-  </a>
-  <a href="https://discord.gg/xpCwq3Kfn8">
-    <img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg" alt="Discord Chat" />
-  </a>
-  <a href="https://twitter.com/intent/follow?screen_name=medusajs">
-    <img src="https://img.shields.io/twitter/follow/medusajs.svg?label=Follow%20@medusajs" alt="Follow @medusajs" />
-  </a>
-</p>
+Your storefront is **ready to deploy**! Follow these 3 steps:
 
-### Prerequisites
+### 1. Push to GitHub
 
-To use the [Next.js Starter Template](https://medusajs.com/nextjs-commerce/), you should have a Medusa server running locally on port 9000.
-For a quick setup, run:
-
-```shell
-npx create-medusa-app@latest
+```bash
+cd printqueen3d-storefront
+git init
+git add .
+git commit -m "Initial commit - Print Queen 3D storefront"
+git branch -M main
+git remote add origin https://github.com/YOUR-USERNAME/printqueen3d-storefront.git
+git push -u origin main
 ```
 
-Check out [create-medusa-app docs](https://docs.medusajs.com/learn/installation) for more details and troubleshooting.
+### 2. Deploy to Vercel
 
-# Overview
+1. Go to [https://vercel.com](https://vercel.com)
+2. Click **"Add New Project"**
+3. Import your GitHub repository
+4. Add environment variables (see below)
+5. Click **"Deploy"**
 
-The Medusa Next.js Starter is built with:
+### 3. Add Environment Variables in Vercel
 
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Typescript](https://www.typescriptlang.org/)
-- [Medusa](https://medusajs.com/)
-
-Features include:
-
-- Full ecommerce support:
-  - Product Detail Page
-  - Product Overview Page
-  - Product Collections
-  - Cart
-  - Checkout with Stripe
-  - User Accounts
-  - Order Details
-- Full Next.js 15 support:
-  - App Router
-  - Next fetching/caching
-  - Server Components
-  - Server Actions
-  - Streaming
-  - Static Pre-Rendering
-
-# Quickstart
-
-### Setting up the environment variables
-
-Navigate into your projects directory and get your environment variables ready:
-
-```shell
-cd nextjs-starter-medusa/
-mv .env.template .env.local
+```
+NEXT_PUBLIC_MEDUSA_BACKEND_URL = https://printqueen3d.medusajs.app
+NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY = pk_eabc62d2ba727f7489960bf91707410194df3b408c70ddd1a484132f1a8d90b0
+NEXT_PUBLIC_DEFAULT_REGION = us
+REVALIDATE_SECRET = printqueen3d_secret_key
 ```
 
-### Install dependencies
+## 📚 Documentation
 
-Use Yarn to install all dependencies.
+- **[VERCEL-DEPLOYMENT-GUIDE.md](./VERCEL-DEPLOYMENT-GUIDE.md)** - Complete deployment instructions
+- **[Medusa Documentation](https://docs.medusajs.com)** - Backend documentation
+- **[Next.js Documentation](https://nextjs.org/docs)** - Frontend framework docs
 
-```shell
-yarn
+## 🎨 Print Queen 3D Branding
+
+### Brand Identity
+- **Business**: Custom 3D printing and NFC solutions
+- **Location**: Los Angeles, CA
+- **Contact**: printqueen3d@gmail.com
+
+### Brand Colors
+- **Cyan**: #00B7EB (primary)
+- **Navy Blue**: #001F3F (secondary)  
+- **Chrome metallic accents**
+- **Neon highlights**
+
+### Product Categories
+1. NFC Payment Stands
+2. QR Code Business Displays
+3. NFC Keychains
+4. Custom Business Accessories
+
+## 🔧 Local Development
+
+Run the development server:
+
+```bash
+npm run dev
 ```
 
-### Start developing
+Open [http://localhost:8000](http://localhost:8000)
 
-You are now ready to start up your project.
+## 📦 What's Included
 
-```shell
-yarn dev
-```
+- ✅ Next.js 14 with App Router
+- ✅ TypeScript
+- ✅ Tailwind CSS
+- ✅ Medusa JS SDK integration
+- ✅ Pre-configured for Medusa Cloud
+- ✅ Responsive design
+- ✅ E-commerce features (cart, checkout, payments)
 
-### Open the code and start customizing
+## 🛍️ Medusa Admin Panel
 
-Your site is now running at http://localhost:8000!
+Access your backend admin panel:
 
-# Payment integrations
+**URL**: [https://printqueen3d.medusajs.app/app](https://printqueen3d.medusajs.app/app)
 
-By default this starter supports the following payment integrations
+Use the admin panel to:
+- Add/manage products
+- Process orders
+- Configure shipping
+- Set up payment providers
+- Manage customers
 
-- [Stripe](https://stripe.com/)
+## 📋 Next Steps After Deployment
 
-To enable the integrations you need to add the following to your `.env.local` file:
+1. ✅ Deploy to Vercel (see guide above)
+2. 🎨 Customize branding and colors
+3. 📦 Add products in Medusa Admin
+4. ⚙️ Configure CORS in Medusa Cloud
+5. 💳 Set up payment provider (Stripe)
+6. 🚚 Configure shipping methods
+7. 🧪 Test the store
 
-```shell
-NEXT_PUBLIC_STRIPE_KEY=<your-stripe-public-key>
-```
+## 🎯 Features to Customize
 
-You'll also need to setup the integrations in your Medusa server. See the [Medusa documentation](https://docs.medusajs.com) for more information on how to configure [Stripe](https://docs.medusajs.com/resources/commerce-modules/payment/payment-provider/stripe#main).
+After deployment, we can add:
+- Custom homepage hero section
+- Request a quote form
+- Portfolio/gallery page
+- Print Queen 3D logo and branding
+- Custom product pages with personalization options
+- Lead capture popups
+- SEO optimization
 
-# Resources
+## 🔐 Environment Variables
 
-## Learn more about Medusa
+Required environment variables are already configured in `.env.local`:
 
-- [Website](https://www.medusajs.com/)
-- [GitHub](https://github.com/medusajs)
-- [Documentation](https://docs.medusajs.com/)
+- `NEXT_PUBLIC_MEDUSA_BACKEND_URL` - Your Medusa Cloud backend
+- `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` - API key for storefront
+- `NEXT_PUBLIC_DEFAULT_REGION` - Default region (US)
+- `REVALIDATE_SECRET` - For ISR revalidation
 
-## Learn more about Next.js
+## 🐛 Troubleshooting
 
-- [Website](https://nextjs.org/)
-- [GitHub](https://github.com/vercel/next.js)
-- [Documentation](https://nextjs.org/docs)
+### Products not showing?
+- Verify products are published in Medusa admin
+- Check products are assigned to "US" region
+
+### CORS errors?
+- Add Vercel URL to Medusa Cloud CORS settings
+
+### Build errors?
+- Verify all environment variables are set correctly
+
+## 📞 Support
+
+- **Medusa Docs**: [https://docs.medusajs.com](https://docs.medusajs.com)
+- **Vercel Docs**: [https://vercel.com/docs](https://vercel.com/docs)
+- **Next.js Docs**: [https://nextjs.org/docs](https://nextjs.org/docs)
+
+## 📄 License
+
+MIT License - See LICENSE file for details
+
+---
+
+**Print Queen 3D** - Professional NFC + 3D Printing Services for Modern Businesses
