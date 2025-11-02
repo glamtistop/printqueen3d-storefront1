@@ -1,11 +1,6 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
-import { getRegion } from "@lib/data/regions"
-import { listCollections } from "@lib/data/collections"
-import { listProducts } from "@lib/data/products"
-import ProductPreview from "@modules/products/components/product-preview"
-import { HttpTypes } from "@medusajs/types"
 
 export const metadata: Metadata = {
   title: "Print Queen 3D | Professional NFC + 3D Printing Services",
@@ -17,26 +12,6 @@ export default async function Home(props: {
 }) {
   const params = await props.params
   const { countryCode } = params
-  const region = await getRegion(countryCode)
-
-  if (!region) {
-    return null
-  }
-
-  // Get collections
-  const { collections } = await listCollections({ limit: "100", offset: "0" })
-  const featuredCollection = collections?.find((c: HttpTypes.StoreCollection) => c.handle === 'featured' || c.handle === '/featured')
-  
-  // Get featured products - showing 12 for variety
-  const { response: productsResponse } = await listProducts({
-    queryParams: {
-      limit: 12,
-      collection_id: featuredCollection?.id ? [featuredCollection.id] : undefined,
-    },
-    countryCode,
-  })
-
-  const featuredProducts = productsResponse?.products || []
 
   return (
     <>
@@ -137,39 +112,6 @@ export default async function Home(props: {
         </div>
       </section>
 
-      {/* Featured Products Grid */}
-      {featuredProducts.length > 0 && (
-        <section className="py-12 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <h2 className="font-display text-4xl font-bold mb-2">
-                <span className="bg-gradient-to-r from-brand-pink via-brand-orange to-brand-yellow bg-clip-text text-transparent">
-                  Customer favorites
-                </span>
-              </h2>
-              <p className="text-lg text-gray-700">Our best-selling custom prints and smart designs</p>
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 md:gap-4">
-              {featuredProducts.map((product: HttpTypes.StoreProduct) => (
-                <ProductPreview 
-                  key={product.id} 
-                  product={product} 
-                  region={region}
-                  isFeatured
-                />
-              ))}
-            </div>
-            <div className="text-center mt-8">
-              <Link 
-                href={`/${countryCode}/store`}
-                className="inline-block bg-gradient-to-r from-brand-cyan to-brand-blue hover:from-brand-blue hover:to-brand-cyan text-white font-bold py-3 px-8 rounded-full text-base transition-all duration-300 transform hover:scale-110 shadow-lg"
-              >
-                View All Products →
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Benefits/Why Choose Us Section */}
       <section className="py-16 bg-gradient-to-br from-brand-cream via-white to-brand-cream">
@@ -208,7 +150,7 @@ export default async function Home(props: {
 
             <div className="text-center p-6 rounded-2xl bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-brand-pink/20">
               <div className="w-20 h-20 bg-gradient-to-br from-brand-pink to-brand-orange rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-4xl">🌟</span>
+                <span className="text-4xl">�</span>
               </div>
               <h3 className="font-display text-xl font-bold text-brand-blue mb-2">Local LA Service</h3>
               <p className="text-gray-700">Supporting local businesses</p>
