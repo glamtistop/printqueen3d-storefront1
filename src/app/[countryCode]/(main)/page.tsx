@@ -1,17 +1,34 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
+import { getRegion } from "@lib/data/regions"
+import { listProducts } from "@lib/data/products"
+import ProductPreview from "@modules/products/components/product-preview"
 
 export const metadata: Metadata = {
   title: "Print Queen 3D | Professional NFC + 3D Printing Services",
   description: "Premium precision. Fast turnaround. Local Los Angeles expertise. Custom NFC payment stands, QR displays, and 3D printed products for businesses.",
 }
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home(props: {
   params: Promise<{ countryCode: string }>
 }) {
   const params = await props.params
   const { countryCode } = params
+  
+  const region = await getRegion(countryCode)
+  
+  // Fetch 6 featured products
+  const { response } = await listProducts({
+    queryParams: {
+      limit: 6,
+    },
+    countryCode,
+  })
+  
+  const featuredProducts = response?.products || []
 
   return (
     <>
@@ -112,6 +129,39 @@ export default async function Home(props: {
         </div>
       </section>
 
+      {/* Featured Products Section */}
+      {featuredProducts.length > 0 && region && (
+        <section className="py-12 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8">
+              <h2 className="font-display text-4xl md:text-5xl font-bold mb-2">
+                <span className="bg-gradient-to-r from-brand-pink via-brand-orange to-brand-yellow bg-clip-text text-transparent">
+                  Featured Products
+                </span>
+              </h2>
+              <p className="text-lg text-gray-700">Our most popular items</p>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 md:gap-4">
+              {featuredProducts.map((product) => (
+                <ProductPreview
+                  key={product.id}
+                  product={product}
+                  region={region}
+                  isFeatured
+                />
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Link
+                href={`/${countryCode}/store`}
+                className="inline-block bg-gradient-to-r from-brand-cyan to-brand-blue hover:from-brand-blue hover:to-brand-cyan text-white font-bold py-3 px-8 rounded-full text-base transition-all duration-300 transform hover:scale-110 shadow-lg"
+              >
+                View All Products →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Benefits/Why Choose Us Section */}
       <section className="py-16 bg-gradient-to-br from-brand-cream via-white to-brand-cream">
