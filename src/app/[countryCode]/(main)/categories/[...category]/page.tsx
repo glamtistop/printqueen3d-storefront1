@@ -44,33 +44,13 @@ type Props = {
 // }
 
 export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+export const revalidate = 0
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params
-  
-  // Default metadata for build time
-  const defaultTitle = "Print Queen 3D | Categories"
-  const defaultDescription = "Explore our product categories"
-  
-  try {
-    const productCategory = await getCategoryByHandle(params.category)
-
-    const title = productCategory.name + " | Print Queen 3D"
-    const description = productCategory.description ?? `${title} category.`
-
-    return {
-      title,
-      description,
-      alternates: {
-        canonical: `${params.category.join("/")}`,
-      },
-    }
-  } catch (error) {
-    // Return default metadata instead of notFound during build
-    return {
-      title: defaultTitle,
-      description: defaultDescription,
-    }
+  return {
+    title: "Print Queen 3D | Categories",
+    description: "Explore our product categories",
   }
 }
 
