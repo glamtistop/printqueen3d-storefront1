@@ -134,3 +134,37 @@ export const listProductsWithSort = async ({
     queryParams,
   }
 }
+
+export const getProductByHandle = async (
+  handle: string,
+  countryCode: string
+): Promise<HttpTypes.StoreProduct | null> => {
+  const region = await getRegion(countryCode)
+
+  if (!region) {
+    return null
+  }
+
+  const headers = {
+    ...(await getAuthHeaders()),
+  }
+
+  const next = {
+    ...(await getCacheOptions("products")),
+  }
+
+  return sdk.client
+    .fetch<{ product: HttpTypes.StoreProduct }>(`/store/products/${handle}`, {
+      method: "GET",
+      query: {
+        region_id: region.id,
+        fields:
+          "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags",
+      },
+      headers,
+      next,
+      cache: "force-cache",
+    })
+    .then(({ product }) => product)
+    .catch(() => null)
+}
