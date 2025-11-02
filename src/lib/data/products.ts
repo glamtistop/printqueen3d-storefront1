@@ -154,9 +154,10 @@ export const getProductByHandle = async (
   }
 
   return sdk.client
-    .fetch<{ product: HttpTypes.StoreProduct }>(`/store/products/${handle}`, {
+    .fetch<{ products: HttpTypes.StoreProduct[] }>(`/store/products`, {
       method: "GET",
       query: {
+        handle: handle,
         region_id: region.id,
         fields:
           "*variants.calculated_price,+variants.inventory_quantity,+metadata,+tags",
@@ -165,6 +166,6 @@ export const getProductByHandle = async (
       next,
       cache: "force-cache",
     })
-    .then(({ product }) => product)
+    .then(({ products }) => products[0] || null)
     .catch(() => null)
 }
