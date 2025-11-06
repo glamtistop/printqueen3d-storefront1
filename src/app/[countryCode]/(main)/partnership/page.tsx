@@ -20,7 +20,7 @@ export default function PartnershipPage() {
   }, [])
 
   return (
-    <div className="fixed inset-0 w-full h-full bg-white z-50">
+    <div className="fixed inset-0 w-full h-full bg-white z-50 overflow-auto">
       {/* JotForm iFrame - Full Page */}
       <iframe
         id="JotFormIFrame-253091307365051"
@@ -29,11 +29,8 @@ export default function PartnershipPage() {
         src="https://form.jotform.com/253091307365051"
         style={{
           width: '100%',
-          height: '100%',
-          border: 'none',
-          position: 'absolute',
-          top: 0,
-          left: 0
+          minHeight: '100%',
+          border: 'none'
         }}
       />
       <Script
