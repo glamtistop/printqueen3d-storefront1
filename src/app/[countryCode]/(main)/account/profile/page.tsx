@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   description: "View and edit your Print Queen 3D account profile.",
 }
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function ProfilePage(props: {
   params: Promise<{ countryCode: string }>
 }) {

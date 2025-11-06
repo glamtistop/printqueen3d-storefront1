@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: "Overview of your account activity.",
 }
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function AccountPage(props: {
   params: Promise<{ countryCode: string }>
 }) {

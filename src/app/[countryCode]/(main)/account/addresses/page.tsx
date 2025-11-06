@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   description: "View and manage your shipping addresses.",
 }
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function AddressesPage(props: {
   params: Promise<{ countryCode: string }>
 }) {
