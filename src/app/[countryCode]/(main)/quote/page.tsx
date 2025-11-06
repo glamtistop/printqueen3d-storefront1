@@ -18,10 +18,9 @@ export default function QuotePage() {
 
   return (
     <div 
-      className="fixed inset-0 w-full h-full bg-white z-50 overflow-auto"
+      className="w-full min-h-screen bg-white"
       style={{
-        WebkitOverflowScrolling: 'touch',
-        touchAction: 'pan-y'
+        WebkitOverflowScrolling: 'touch'
       }}
     >
       {/* JotForm iFrame - Full Page */}
@@ -32,7 +31,7 @@ export default function QuotePage() {
         src="https://form.jotform.com/253092245297057"
         style={{
           width: '100%',
-          minHeight: '100vh',
+          minHeight: 'calc(100vh - 80px)',
           border: 'none',
           display: 'block'
         }}
