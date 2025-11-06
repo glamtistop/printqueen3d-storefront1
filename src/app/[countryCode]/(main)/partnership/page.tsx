@@ -9,7 +9,6 @@ export default function PartnershipPage() {
       <iframe
         id="JotFormIFrame-253091307365051"
         title="Partnership and Collaboration Request Form"
-        allowTransparency={true}
         allow="geolocation; microphone; camera; fullscreen; payment"
         src="https://form.jotform.com/253091307365051"
         style={{
@@ -17,7 +16,6 @@ export default function PartnershipPage() {
           height: '100%',
           border: 'none'
         }}
-        scrolling="yes"
       />
       <Script
         src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"
