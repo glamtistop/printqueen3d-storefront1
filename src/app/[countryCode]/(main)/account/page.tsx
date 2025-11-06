@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { notFound } from "next/navigation"
+import { redirect } from "next/navigation"
 
 import { retrieveCustomer } from "@lib/data/customer"
 import { listOrders } from "@lib/data/orders"
@@ -10,11 +10,14 @@ export const metadata: Metadata = {
   description: "Overview of your account activity.",
 }
 
-export default async function AccountPage() {
+export default async function AccountPage(props: {
+  params: Promise<{ countryCode: string }>
+}) {
+  const params = await props.params
   const customer = await retrieveCustomer().catch(() => null)
 
   if (!customer) {
-    notFound()
+    redirect(`/${params.countryCode}/account/login`)
   }
 
   const orders = (await listOrders(10, 0)) || []
