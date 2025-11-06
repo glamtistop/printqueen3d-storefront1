@@ -1,6 +1,7 @@
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
+import { signout } from "@lib/data/customer"
 
 type OverviewProps = {
   customer: HttpTypes.StoreCustomer | null
@@ -14,13 +15,25 @@ const Overview = ({ customer, orders }: OverviewProps) => {
     <div data-testid="overview-page-wrapper" className="min-h-screen bg-gradient-to-br from-white via-brand-cream to-white">
       {/* Welcome Banner */}
       <div className="bg-gradient-to-r from-brand-pink via-brand-orange to-brand-yellow text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="font-display text-4xl md:text-5xl font-bold mb-4" data-testid="welcome-message">
-            Welcome back, {customer?.first_name}! 👋
-          </h1>
-          <p className="text-xl opacity-90" data-testid="customer-email">
-            {customer?.email}
-          </p>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-center md:text-left">
+              <h1 className="font-display text-4xl md:text-5xl font-bold mb-2" data-testid="welcome-message">
+                Welcome back, {customer?.first_name}! 👋
+              </h1>
+              <p className="text-xl opacity-90" data-testid="customer-email">
+                {customer?.email}
+              </p>
+            </div>
+            <form action={signout.bind(null, "us")}>
+              <button
+                type="submit"
+                className="bg-white text-brand-pink font-bold px-6 py-3 rounded-full hover:bg-brand-cream transition-colors shadow-lg"
+              >
+                Sign Out
+              </button>
+            </form>
+          </div>
         </div>
       </div>
 
@@ -41,12 +54,18 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                 <span className="text-gray-600">Complete</span>
               </div>
             </div>
-            <div className="text-sm text-gray-600 space-y-1">
+            <div className="text-sm text-gray-600 space-y-1 mb-4">
               <p>✓ Email: {customer?.email ? 'Added' : 'Missing'}</p>
               <p>✓ Name: {customer?.first_name && customer?.last_name ? 'Added' : 'Missing'}</p>
               <p>✓ Phone: {customer?.phone ? 'Added' : 'Missing'}</p>
               <p>✓ Billing: {customer?.addresses?.find(a => a.is_default_billing) ? 'Added' : 'Missing'}</p>
             </div>
+            <LocalizedClientLink
+              href="/account/profile"
+              className="block text-center bg-gradient-to-r from-brand-green to-brand-cyan text-white font-bold py-2 px-4 rounded-full hover:opacity-90 transition-opacity text-sm"
+            >
+              Edit Profile
+            </LocalizedClientLink>
           </div>
 
           {/* Address Count */}
@@ -63,11 +82,17 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                 <span className="text-gray-600">Saved</span>
               </div>
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 mb-4">
               {customer?.addresses?.length === 0 
                 ? 'Add your shipping address for faster checkout' 
                 : 'Manage your delivery locations'}
             </p>
+            <LocalizedClientLink
+              href="/account/addresses"
+              className="block text-center bg-gradient-to-r from-brand-cyan to-brand-blue text-white font-bold py-2 px-4 rounded-full hover:opacity-90 transition-opacity text-sm"
+            >
+              Manage Addresses
+            </LocalizedClientLink>
           </div>
 
           {/* Order Count */}
