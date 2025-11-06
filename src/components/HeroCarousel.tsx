@@ -35,7 +35,21 @@ export default function HeroCarousel() {
 
   return (
     <section className="relative w-full overflow-hidden">
-      <div className="relative w-full h-[600px]">
+      {/* Mobile: Static Banner */}
+      <div className="lg:hidden relative w-full h-[400px]">
+        <Image
+          src="/mobilebanner.png"
+          alt="Print Queen 3D"
+          width={800}
+          height={400}
+          className="w-full h-full object-cover"
+          priority
+          unoptimized
+        />
+      </div>
+
+      {/* Desktop: Carousel */}
+      <div className="hidden lg:block relative w-full h-[600px]">
         {/* Images */}
         {images.map((image, index) => (
           <div
