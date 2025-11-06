@@ -17,9 +17,7 @@ export default async function Footer() {
           <div>
             <h3 className="font-display text-2xl font-bold text-brand-green mb-4">Print Queen 3D</h3>
             <p className="text-gray-300 mb-4 text-sm leading-relaxed">
-              Precision in Every Layer. Style in Every Print.<br />
-              Built in LA. Made for Everywhere.<br />
-              If You Can Dream It, We Can Print It.
+              Precision in Every Layer. Style in Every Print. Built in LA. Made for Everywhere. If You Can Dream It, We Can Print It.
             </p>
             <div className="space-y-2 text-sm">
               <div className="flex items-start gap-2">
