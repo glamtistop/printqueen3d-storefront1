@@ -64,6 +64,11 @@ const AddAddress = ({
         <form action={formAction}>
           <Modal.Body>
             <div className="flex flex-col gap-y-2">
+              <Input
+                label="Address Name (e.g., Home, Work)"
+                name="address_name"
+                data-testid="address-name-input"
+              />
               <div className="grid grid-cols-2 gap-x-2">
                 <Input
                   label="First name"

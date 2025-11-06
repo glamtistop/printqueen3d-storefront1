@@ -58,7 +58,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
               <p>✓ Email: {customer?.email ? 'Added' : 'Missing'}</p>
               <p>✓ Name: {customer?.first_name && customer?.last_name ? 'Added' : 'Missing'}</p>
               <p>✓ Phone: {customer?.phone ? 'Added' : 'Missing'}</p>
-              <p>✓ Billing: {customer?.addresses?.find(a => a.is_default_billing) ? 'Added' : 'Missing'}</p>
+              <p>✓ Address: {customer?.addresses && customer?.addresses.length > 0 ? 'Added' : 'Missing'}</p>
             </div>
             <LocalizedClientLink
               href="/account/profile"
@@ -232,11 +232,8 @@ const getProfileCompletion = (customer: HttpTypes.StoreCustomer | null) => {
     count++
   }
 
-  const billingAddress = customer.addresses?.find(
-    (addr) => addr.is_default_billing
-  )
-
-  if (billingAddress) {
+  // Check if customer has ANY address (not just billing)
+  if (customer.addresses && customer.addresses.length > 0) {
     count++
   }
 
