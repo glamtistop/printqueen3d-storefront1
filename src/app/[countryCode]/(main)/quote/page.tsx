@@ -1,10 +1,26 @@
 "use client"
 
 import Script from "next/script"
+import { useEffect } from "react"
 
 export default function QuotePage() {
+  useEffect(() => {
+    // Hide nav and footer elements
+    const nav = document.querySelector('nav')
+    const footer = document.querySelector('footer')
+    
+    if (nav) nav.style.display = 'none'
+    if (footer) footer.style.display = 'none'
+    
+    // Cleanup on unmount
+    return () => {
+      if (nav) nav.style.display = ''
+      if (footer) footer.style.display = ''
+    }
+  }, [])
+
   return (
-    <div className="w-full h-screen bg-white">
+    <div className="fixed inset-0 w-full h-full bg-white z-50">
       {/* JotForm iFrame - Full Page */}
       <iframe
         id="JotFormIFrame-253092245297057"
@@ -14,7 +30,10 @@ export default function QuotePage() {
         style={{
           width: '100%',
           height: '100%',
-          border: 'none'
+          border: 'none',
+          position: 'absolute',
+          top: 0,
+          left: 0
         }}
       />
       <Script
