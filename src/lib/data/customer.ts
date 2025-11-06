@@ -243,6 +243,9 @@ export const updateCustomerAddress = async (
     postal_code: formData.get("postal_code") as string,
     province: formData.get("province") as string,
     country_code: formData.get("country_code") as string,
+    metadata: {
+      address_name: formData.get("address_name") as string,
+    },
   } as HttpTypes.StoreUpdateCustomerAddress
 
   const phone = formData.get("phone") as string

@@ -129,6 +129,12 @@ const EditAddress: React.FC<EditAddressProps> = ({
           <input type="hidden" name="addressId" value={address.id} />
           <Modal.Body>
             <div className="grid grid-cols-1 gap-y-2">
+              <Input
+                label="Address Name (e.g., Home, Work)"
+                name="address_name"
+                defaultValue={(address.metadata?.address_name as string) || undefined}
+                data-testid="address-name-input"
+              />
               <div className="grid grid-cols-2 gap-x-2">
                 <Input
                   label="First name"
