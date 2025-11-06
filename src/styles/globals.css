@@ -110,3 +110,35 @@
     @apply text-[32px] leading-[44px] font-semibold;
   }
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes carousel {
+  0%, 30% {
+    transform: translateX(0%);
+  }
+  33%, 63% {
+    transform: translateX(-100%);
+  }
+  66%, 96% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-carousel {
+  animation: carousel 15s ease-in-out infinite;
+}

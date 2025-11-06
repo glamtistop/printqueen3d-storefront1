@@ -1,9 +1,9 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import Image from "next/image"
 import { getRegion } from "@lib/data/regions"
 import { listProducts } from "@lib/data/products"
 import ProductPreview from "@modules/products/components/product-preview"
+import HeroCarousel from "../../../components/HeroCarousel"
 
 export const metadata: Metadata = {
   title: "Print Queen 3D | Professional NFC + 3D Printing Services",
@@ -43,18 +43,8 @@ export default async function Home(props: {
         </div>
       </div>
 
-      {/* Hero Banner - Your Custom Banner */}
-      <section className="relative w-full">
-        <Image
-          src="/hero-banner.png"
-          alt="Print Queen 3D - NFC Payment Stands"
-          width={1920}
-          height={700}
-          className="w-full h-auto"
-          priority
-          quality={100}
-        />
-      </section>
+      {/* Hero Banner - Image Carousel with Navigation */}
+      <HeroCarousel />
 
       {/* Collections Grid - 2 on mobile, 6 on desktop */}
       <section className="py-12 bg-gradient-to-br from-white via-brand-cream to-white">
