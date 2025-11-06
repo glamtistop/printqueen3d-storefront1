@@ -80,7 +80,7 @@ export async function signup(_currentState: unknown, formData: FormData) {
       ...(await getAuthHeaders()),
     }
 
-    const { customer: createdCustomer } = await sdk.store.customer.create(
+    await sdk.store.customer.create(
       customerForm,
       {},
       headers
@@ -97,11 +97,12 @@ export async function signup(_currentState: unknown, formData: FormData) {
     revalidateTag(customerCacheTag)
 
     await transferCart()
-
-    return createdCustomer
   } catch (error: any) {
     return error.toString()
   }
+
+  // Redirect after successful signup
+  redirect("/us/account")
 }
 
 export async function login(_currentState: unknown, formData: FormData) {
@@ -125,6 +126,9 @@ export async function login(_currentState: unknown, formData: FormData) {
   } catch (error: any) {
     return error.toString()
   }
+
+  // Redirect after successful login
+  redirect("/us/account")
 }
 
 export async function signout(countryCode: string) {
