@@ -50,69 +50,75 @@ export default async function Home(props: {
       <section className="py-12 bg-gradient-to-br from-white via-brand-cream to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 md:gap-4">
-            {/* NFC Stands */}
+            {/* Payment Stands */}
             <Link 
               href={`/${countryCode}/store`}
               className="relative group overflow-hidden rounded-xl aspect-square bg-gradient-to-br from-brand-green to-brand-cyan hover:scale-105 transition-transform duration-300 shadow-lg"
             >
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-2 text-center">
-                <div className="text-3xl md:text-4xl mb-1">💳</div>
-                <h3 className="text-xs md:text-sm lg:text-base font-display font-bold drop-shadow-lg">NFC Stands</h3>
+              <div className="absolute inset-0 flex items-center justify-center text-white p-4 text-center">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-display font-black uppercase tracking-tight leading-tight" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+                  Payment<br />Stands
+                </h3>
               </div>
             </Link>
 
-            {/* 3D Printed Products */}
+            {/* Keychains */}
             <Link 
               href={`/${countryCode}/store`}
               className="relative group overflow-hidden rounded-xl aspect-square bg-gradient-to-br from-brand-pink to-brand-orange hover:scale-105 transition-transform duration-300 shadow-lg"
             >
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-2 text-center">
-                <div className="text-3xl md:text-4xl mb-1">🎨</div>
-                <h3 className="text-xs md:text-sm lg:text-base font-display font-bold drop-shadow-lg">3D Printing</h3>
+              <div className="absolute inset-0 flex items-center justify-center text-white p-4 text-center">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-display font-black uppercase tracking-tight leading-tight" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+                  Keychains
+                </h3>
               </div>
             </Link>
 
-            {/* QR Code Displays */}
+            {/* Signage */}
             <Link 
               href={`/${countryCode}/store`}
               className="relative group overflow-hidden rounded-xl aspect-square bg-gradient-to-br from-brand-yellow to-brand-orange hover:scale-105 transition-transform duration-300 shadow-lg"
             >
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-2 text-center">
-                <div className="text-3xl md:text-4xl mb-1">📱</div>
-                <h3 className="text-xs md:text-sm lg:text-base font-display font-bold drop-shadow-lg">QR Displays</h3>
+              <div className="absolute inset-0 flex items-center justify-center text-white p-4 text-center">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-display font-black uppercase tracking-tight leading-tight" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+                  Signage
+                </h3>
               </div>
             </Link>
 
-            {/* NFC Keychains */}
+            {/* Incense Holders */}
             <Link 
               href={`/${countryCode}/store`}
               className="relative group overflow-hidden rounded-xl aspect-square bg-gradient-to-br from-brand-cyan to-brand-blue hover:scale-105 transition-transform duration-300 shadow-lg"
             >
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-2 text-center">
-                <div className="text-3xl md:text-4xl mb-1">🔑</div>
-                <h3 className="text-xs md:text-sm lg:text-base font-display font-bold drop-shadow-lg">NFC Keychains</h3>
+              <div className="absolute inset-0 flex items-center justify-center text-white p-4 text-center">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-display font-black uppercase tracking-tight leading-tight" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+                  Incense<br />Holders
+                </h3>
               </div>
             </Link>
 
-            {/* Business Signage */}
+            {/* Toys & Fidgets */}
             <Link 
               href={`/${countryCode}/store`}
               className="relative group overflow-hidden rounded-xl aspect-square bg-gradient-to-br from-brand-pink to-brand-yellow hover:scale-105 transition-transform duration-300 shadow-lg"
             >
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-2 text-center">
-                <div className="text-3xl md:text-4xl mb-1">🪧</div>
-                <h3 className="text-xs md:text-sm lg:text-base font-display font-bold drop-shadow-lg">Signage</h3>
+              <div className="absolute inset-0 flex items-center justify-center text-white p-4 text-center">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-display font-black uppercase tracking-tight leading-tight" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+                  Toys &<br />Fidgets
+                </h3>
               </div>
             </Link>
 
-            {/* Custom Orders */}
+            {/* Custom 3D Prints */}
             <Link 
               href={`/${countryCode}/quote`}
               className="relative group overflow-hidden rounded-xl aspect-square bg-gradient-to-br from-brand-green via-brand-cyan to-brand-blue hover:scale-105 transition-transform duration-300 shadow-lg"
             >
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-2 text-center">
-                <div className="text-3xl md:text-4xl mb-1">✨</div>
-                <h3 className="text-xs md:text-sm lg:text-base font-display font-bold drop-shadow-lg">Custom</h3>
+              <div className="absolute inset-0 flex items-center justify-center text-white p-4 text-center">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-display font-black uppercase tracking-tight leading-tight" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+                  Custom<br />3D Prints
+                </h3>
               </div>
             </Link>
           </div>
