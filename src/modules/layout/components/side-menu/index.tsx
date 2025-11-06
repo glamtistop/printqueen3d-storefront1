@@ -12,7 +12,6 @@ import { HttpTypes } from "@medusajs/types"
 const SideMenuItems = {
   Home: "/",
   Shop: "/store",
-  Portfolio: "/portfolio",
   About: "/about",
   "Get Quote": "/quote",
   Account: "/account",
@@ -48,13 +47,13 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                 leaveFrom="opacity-100 backdrop-blur-2xl"
                 leaveTo="opacity-0"
               >
-                <PopoverPanel className="flex flex-col absolute w-full pr-4 sm:pr-0 sm:w-1/3 2xl:w-1/4 sm:min-w-min h-[calc(100vh-1rem)] z-30 inset-x-0 text-sm text-ui-fg-on-color m-2 backdrop-blur-2xl">
+                <PopoverPanel className="flex flex-col absolute w-full pr-4 sm:pr-0 sm:w-1/3 2xl:w-1/4 sm:min-w-min h-[calc(100vh-1rem)] z-30 inset-x-0 text-sm m-2">
                   <div
                     data-testid="nav-menu-popup"
-                    className="flex flex-col h-full bg-[rgba(3,7,18,0.5)] rounded-rounded justify-between p-6"
+                    className="flex flex-col h-full bg-white rounded-lg shadow-2xl justify-between p-6"
                   >
                     <div className="flex justify-end" id="xmark">
-                      <button data-testid="close-menu-button" onClick={close}>
+                      <button data-testid="close-menu-button" onClick={close} className="text-gray-700 hover:text-brand-cyan">
                         <XMark />
                       </button>
                     </div>
@@ -64,7 +63,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                           <li key={name}>
                             <LocalizedClientLink
                               href={href}
-                              className="text-3xl leading-10 hover:text-ui-fg-disabled"
+                              className="text-2xl font-semibold text-gray-700 hover:text-brand-cyan transition-colors duration-200"
                               onClick={close}
                               data-testid={`${name.toLowerCase()}-link`}
                             >
@@ -93,9 +92,8 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                           )}
                         />
                       </div>
-                      <Text className="flex justify-between txt-compact-small">
-                        © {new Date().getFullYear()} Print Queen 3D. All rights
-                        reserved.
+                      <Text className="flex justify-between txt-compact-small text-gray-600">
+                        © {new Date().getFullYear()} Print Queen 3D. All rights reserved.
                       </Text>
                     </div>
                   </div>

@@ -53,12 +53,6 @@ export default async function Nav() {
             </LocalizedClientLink>
             <LocalizedClientLink
               className="text-gray-700 hover:text-brand-cyan font-medium transition-colors duration-200"
-              href="/portfolio"
-            >
-              Portfolio
-            </LocalizedClientLink>
-            <LocalizedClientLink
-              className="text-gray-700 hover:text-brand-cyan font-medium transition-colors duration-200"
               href="/about"
             >
               About

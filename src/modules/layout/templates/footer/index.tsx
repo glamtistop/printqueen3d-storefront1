@@ -62,11 +62,6 @@ export default async function Footer() {
                 </LocalizedClientLink>
               </li>
               <li>
-                <LocalizedClientLink href="/portfolio" className="text-gray-300 hover:text-brand-green transition-colors">
-                  Portfolio
-                </LocalizedClientLink>
-              </li>
-              <li>
                 <LocalizedClientLink href="/quote" className="text-gray-300 hover:text-brand-green transition-colors">
                   Request a Quote
                 </LocalizedClientLink>

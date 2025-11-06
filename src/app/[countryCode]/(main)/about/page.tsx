@@ -146,18 +146,12 @@ export default function AboutPage() {
           <p className="text-xl text-gray-300 mb-8">
             Let's bring your custom 3D printing project to life
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Link
               href="/us/quote"
               className="bg-brand-cyan hover:bg-brand-neon text-brand-navy font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               Request a Quote
-            </Link>
-            <Link
-              href="/us/portfolio"
-              className="bg-transparent border-2 border-brand-cyan hover:bg-brand-cyan/10 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300"
-            >
-              View Portfolio
             </Link>
           </div>
         </div>
