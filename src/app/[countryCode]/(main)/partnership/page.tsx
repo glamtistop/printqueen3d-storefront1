@@ -20,10 +20,12 @@ export default function PartnershipPage() {
       <Script
         src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"
         strategy="afterInteractive"
+        onLoad={() => {
+          if (typeof window !== 'undefined' && (window as any).jotformEmbedHandler) {
+            (window as any).jotformEmbedHandler("iframe[id='JotFormIFrame-253091307365051']", "https://form.jotform.com/")
+          }
+        }}
       />
-      <Script id="jotform-handler" strategy="afterInteractive">
-        {`window.jotformEmbedHandler("iframe[id='JotFormIFrame-253091307365051']", "https://form.jotform.com/")`}
-      </Script>
     </div>
   )
 }
