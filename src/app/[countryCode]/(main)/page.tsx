@@ -236,7 +236,7 @@ export default async function Home(props: {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-brand-pink via-brand-orange to-brand-yellow bg-clip-text text-transparent">
-              Made to order in Los Angeles
+              Your Vision, Printed Perfectly.
             </span>
           </h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-8">
