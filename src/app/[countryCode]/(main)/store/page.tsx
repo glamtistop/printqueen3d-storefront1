@@ -26,7 +26,8 @@ export default async function StorePage(props: {
 
   const { response } = await listProducts({
     queryParams: {
-      limit: 24,
+      limit: 100,
+      order: '-created_at', // Sort by newest first
     },
     countryCode,
   })

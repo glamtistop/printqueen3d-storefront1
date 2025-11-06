@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import { getRegion } from "@lib/data/regions"
-import { listProducts } from "@lib/data/products"
+import { getCollectionByHandle } from "@lib/data/collections"
 import ProductPreview from "@modules/products/components/product-preview"
 import HeroCarousel from "../../../components/HeroCarousel"
 
@@ -20,15 +20,9 @@ export default async function Home(props: {
   
   const region = await getRegion(countryCode)
   
-  // Fetch 6 featured products
-  const { response } = await listProducts({
-    queryParams: {
-      limit: 6,
-    },
-    countryCode,
-  })
-  
-  const featuredProducts = response?.products || []
+  // Fetch products from Featured collection
+  const featuredCollection = await getCollectionByHandle("featured").catch(() => null)
+  const featuredProducts = featuredCollection?.products?.slice(0, 6) || []
 
   return (
     <>
