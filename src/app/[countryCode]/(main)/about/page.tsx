@@ -10,10 +10,10 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-brand-navy via-purple-900 to-brand-blue text-white py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#1a1a2e] via-[#0f0f1e] to-[#16213e] text-white py-20 overflow-hidden">
         {/* Animated background elements */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,255,255,0.08),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(147,51,234,0.08),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,180,180,0.06),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(100,30,150,0.06),transparent_50%)]"></div>
         
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
@@ -21,11 +21,11 @@ export default function AboutPage() {
           </h1>
           
           {/* Banner tagline */}
-          <div className="relative inline-block bg-black/20 backdrop-blur-sm rounded-2xl px-8 py-6 border border-brand-cyan/30">
+          <div className="relative inline-block bg-black/30 backdrop-blur-sm rounded-2xl px-8 py-6 border border-[#00b4b4]/40">
             <p className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               Precision engineering meets stylish design
               <br />
-              <span className="text-xl sm:text-2xl md:text-3xl text-brand-cyan">in the heart of Los Angeles</span>
+              <span className="text-xl sm:text-2xl md:text-3xl text-[#00d4d4]">in the heart of Los Angeles</span>
             </p>
           </div>
         </div>
