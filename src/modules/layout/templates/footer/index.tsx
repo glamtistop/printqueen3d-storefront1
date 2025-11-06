@@ -12,7 +12,7 @@ export default async function Footer() {
   return (
     <footer className="bg-brand-blue text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {/* Company Info */}
           <div>
             <h3 className="font-display text-2xl font-bold text-brand-green mb-4">Print Queen 3D</h3>
@@ -79,31 +79,9 @@ export default async function Footer() {
             </ul>
           </div>
 
-          {/* Products */}
-          {collections && collections.length > 0 && (
-            <div>
-              <h4 className="font-display font-bold text-white mb-4">Products</h4>
-              <ul className="space-y-2 text-sm">
-                {collections?.slice(0, 5).map((c) => (
-                  <li key={c.id}>
-                    <LocalizedClientLink
-                      href={`/collections/${c.handle}`}
-                      className="text-gray-300 hover:text-brand-green transition-colors"
-                    >
-                      {c.title}
-                    </LocalizedClientLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Social & Partner */}
+          {/* Social & Partnership */}
           <div>
-            <h4 className="font-display font-bold text-white mb-4">Partner & collaborate</h4>
-            <p className="text-gray-300 text-sm mb-4">
-              Creators, event organizers, and brands—let's build together. Pitch product ideas, event activations, or content collabs.
-            </p>
+            <h4 className="font-display font-bold text-white mb-4">Connect & Collaborate</h4>
             <div className="flex gap-4 mb-6">
               <a 
                 href="https://instagram.com/printqueen3d" 
@@ -126,6 +104,12 @@ export default async function Footer() {
                 </svg>
               </a>
             </div>
+            <LocalizedClientLink 
+              href="/partnership"
+              className="inline-block bg-brand-green hover:bg-brand-cyan text-brand-navy font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 mb-6"
+            >
+              Partner With Us
+            </LocalizedClientLink>
             <ul className="space-y-2 text-sm mt-4">
               <li>
                 <a href="#" className="text-gray-300 hover:text-brand-green transition-colors">Terms of Service</a>
