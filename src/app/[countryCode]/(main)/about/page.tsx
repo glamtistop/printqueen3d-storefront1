@@ -151,23 +151,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-brand-navy to-gray-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-4xl font-bold mb-6">Ready to Get Started?</h2>
-          <p className="text-xl text-gray-300 mb-8">
-            Let's bring your custom 3D printing project to life
-          </p>
-          <div className="flex justify-center">
-            <Link
-              href="/us/quote"
-              className="bg-brand-cyan hover:bg-brand-neon text-brand-navy font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              Request a Quote
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
