@@ -169,6 +169,8 @@ export const addCustomerAddress = async (
   const isDefaultBilling = (currentState.isDefaultBilling as boolean) || false
   const isDefaultShipping = (currentState.isDefaultShipping as boolean) || false
 
+  const addressName = formData.get("address_name") as string
+
   const address = {
     first_name: formData.get("first_name") as string,
     last_name: formData.get("last_name") as string,
@@ -180,9 +182,11 @@ export const addCustomerAddress = async (
     province: formData.get("province") as string,
     country_code: formData.get("country_code") as string,
     phone: formData.get("phone") as string,
-    metadata: {
-      address_name: formData.get("address_name") as string,
-    },
+    ...(addressName && {
+      metadata: {
+        address_name: addressName,
+      },
+    }),
     is_default_billing: isDefaultBilling,
     is_default_shipping: isDefaultShipping,
   }
@@ -233,6 +237,8 @@ export const updateCustomerAddress = async (
     return { success: false, error: "Address ID is required" }
   }
 
+  const addressName = formData.get("address_name") as string
+
   const address = {
     first_name: formData.get("first_name") as string,
     last_name: formData.get("last_name") as string,
@@ -243,9 +249,11 @@ export const updateCustomerAddress = async (
     postal_code: formData.get("postal_code") as string,
     province: formData.get("province") as string,
     country_code: formData.get("country_code") as string,
-    metadata: {
-      address_name: formData.get("address_name") as string,
-    },
+    ...(addressName && {
+      metadata: {
+        address_name: addressName,
+      },
+    }),
   } as HttpTypes.StoreUpdateCustomerAddress
 
   const phone = formData.get("phone") as string
