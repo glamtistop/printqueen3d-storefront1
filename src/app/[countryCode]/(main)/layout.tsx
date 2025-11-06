@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { headers } from "next/headers"
 
 import { listCartOptions, retrieveCart } from "@lib/data/cart"
 import { retrieveCustomer } from "@lib/data/customer"
@@ -24,6 +25,11 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
     shippingOptions = shipping_options
   }
 
+  // Get the current pathname to conditionally hide footer on iframe pages
+  const headersList = await headers()
+  const pathname = headersList.get("x-pathname") || ""
+  const isIframePage = pathname.includes("/quote") || pathname.includes("/partnership")
+
   return (
     <>
       <Nav />
@@ -39,7 +45,7 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
         />
       )}
       {props.children}
-      <Footer />
+      {!isIframePage && <Footer />}
     </>
   )
 }

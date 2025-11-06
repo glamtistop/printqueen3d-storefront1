@@ -155,6 +155,18 @@ export async function middleware(request: NextRequest) {
     )
   }
 
+  // Add pathname to request headers for use in layouts
+  if (urlHasCountryCode) {
+    const requestHeaders = new Headers(request.headers)
+    requestHeaders.set("x-pathname", request.nextUrl.pathname)
+    
+    return NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    })
+  }
+
   return response
 }
 
