@@ -5,16 +5,13 @@ import { useEffect } from "react"
 
 export default function QuotePage() {
   useEffect(() => {
-    // Hide nav and footer elements
-    const nav = document.querySelector('nav')
+    // Hide footer element only (keep nav visible)
     const footer = document.querySelector('footer')
     
-    if (nav) nav.style.display = 'none'
     if (footer) footer.style.display = 'none'
     
     // Cleanup on unmount
     return () => {
-      if (nav) nav.style.display = ''
       if (footer) footer.style.display = ''
     }
   }, [])
