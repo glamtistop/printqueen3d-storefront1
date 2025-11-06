@@ -11,9 +11,11 @@ import { HttpTypes } from "@medusajs/types"
 
 const SideMenuItems = {
   Home: "/",
-  Store: "/store",
+  Shop: "/store",
+  Portfolio: "/portfolio",
+  About: "/about",
+  "Get Quote": "/quote",
   Account: "/account",
-  Cart: "/cart",
 }
 
 const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
@@ -28,9 +30,11 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
               <div className="relative flex h-full">
                 <Popover.Button
                   data-testid="nav-menu-button"
-                  className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
+                  className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-brand-cyan p-2"
                 >
-                  Menu
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
                 </Popover.Button>
               </div>
 
@@ -90,7 +94,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
                         />
                       </div>
                       <Text className="flex justify-between txt-compact-small">
-                        © {new Date().getFullYear()} Medusa Store. All rights
+                        © {new Date().getFullYear()} Print Queen 3D. All rights
                         reserved.
                       </Text>
                     </div>
