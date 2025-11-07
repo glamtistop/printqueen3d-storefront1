@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   description: "View your order history and track your purchases.",
 }
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function Orders({
   params,
 }: {
