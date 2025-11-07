@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { redirect } from "next/navigation"
 
 import { retrieveCustomer } from "@lib/data/customer"
-import { listOrders } from "@lib/data/orders"
+import { listCustomerOrders } from "@lib/data/orders"
 import Overview from "@modules/account/components/overview"
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default async function AccountPage(props: {
     redirect(`/${params.countryCode}/account/login`)
   }
 
-  const orders = (await listOrders(10, 0)) || []
+  const orders = (await listCustomerOrders(10, 0)) || []
 
   return <Overview customer={customer} orders={orders} />
 }
