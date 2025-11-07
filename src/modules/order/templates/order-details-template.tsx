@@ -1,46 +1,289 @@
-"use client"
-
-import { XMark } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
+import { Heading, Text } from "@medusajs/ui"
+import { convertToLocale } from "@lib/util/money"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Help from "@modules/order/components/help"
-import Items from "@modules/order/components/items"
-import OrderDetails from "@modules/order/components/order-details"
-import OrderSummary from "@modules/order/components/order-summary"
-import ShippingDetails from "@modules/order/components/shipping-details"
-import React from "react"
+import Thumbnail from "@modules/products/components/thumbnail"
 
 type OrderDetailsTemplateProps = {
   order: HttpTypes.StoreOrder
 }
 
-const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
+export default function OrderDetailsTemplate({
   order,
-}) => {
+}: OrderDetailsTemplateProps) {
   return (
-    <div className="flex flex-col justify-center gap-y-4">
-      <div className="flex gap-2 justify-between items-center">
-        <h1 className="text-2xl-semi">Order details</h1>
-        <LocalizedClientLink
-          href="/account/orders"
-          className="flex gap-2 items-center text-ui-fg-subtle hover:text-ui-fg-base"
-          data-testid="back-to-overview-button"
-        >
-          <XMark /> Back to overview
-        </LocalizedClientLink>
-      </div>
-      <div
-        className="flex flex-col gap-4 h-full bg-white w-full"
-        data-testid="order-details-container"
-      >
-        <OrderDetails order={order} showStatus />
-        <Items order={order} />
-        <ShippingDetails order={order} />
-        <OrderSummary order={order} />
-        <Help />
+    <div className="min-h-screen bg-gradient-to-br from-white via-brand-cream to-white py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-8">
+          <LocalizedClientLink
+            href="/account/orders"
+            className="inline-flex items-center gap-2 text-brand-cyan hover:text-brand-blue font-semibold mb-4"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Back to Orders
+          </LocalizedClientLink>
+          
+          <Heading level="h1" className="text-3xl font-bold mb-2">
+            <span className="bg-gradient-to-r from-brand-pink via-brand-orange to-brand-yellow bg-clip-text text-transparent">
+              Order #{order.display_id}
+            </span>
+          </Heading>
+          <div className="flex flex-wrap items-center gap-3 mb-2">
+            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+              order.payment_status === "captured"
+                ? "bg-green-100 text-green-700"
+                : order.payment_status === "awaiting"
+                ? "bg-yellow-100 text-yellow-700"
+                : "bg-gray-100 text-gray-700"
+            }`}>
+              {order.payment_status === "captured" ? "Paid" : order.payment_status}
+            </span>
+            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+              order.fulfillment_status === "fulfilled"
+                ? "bg-green-100 text-green-700"
+                : order.fulfillment_status === "shipped"
+                ? "bg-blue-100 text-blue-700"
+                : "bg-gray-100 text-gray-700"
+            }`}>
+              {order.fulfillment_status || "Processing"}
+            </span>
+          </div>
+          <Text className="text-sm text-gray-600">
+            Placed on {new Date(order.created_at).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </Text>
+        </div>
+
+        {/* Order Details Card */}
+        <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
+          {/* Customer Info */}
+          <div className="mb-8 pb-8 border-b border-gray-200">
+            <h2 className="text-xl font-bold text-brand-navy mb-4">
+              Order Information
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-sm font-semibold text-gray-700 mb-2">
+                  Contact
+                </h3>
+                <p className="text-gray-600">{order.email}</p>
+              </div>
+              {order.shipping_address && (
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-700 mb-2">
+                    Shipping Address
+                  </h3>
+                  <p className="text-gray-600">
+                    {order.shipping_address.first_name}{" "}
+                    {order.shipping_address.last_name}
+                    <br />
+                    {order.shipping_address.address_1}
+                    {order.shipping_address.address_2 && (
+                      <>
+                        <br />
+                        {order.shipping_address.address_2}
+                      </>
+                    )}
+                    <br />
+                    {order.shipping_address.city},{" "}
+                    {order.shipping_address.province}{" "}
+                    {order.shipping_address.postal_code}
+                    <br />
+                    {order.shipping_address.phone && (
+                      <>Phone: {order.shipping_address.phone}</>
+                    )}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Order Items */}
+          <div className="mb-8">
+            <h2 className="text-xl font-bold text-brand-navy mb-4">
+              Order Items
+            </h2>
+            <div className="space-y-4">
+              {order.items?.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg"
+                >
+                  <div className="w-20 h-20 flex-shrink-0">
+                    <Thumbnail
+                      thumbnail={item.thumbnail}
+                      images={[]}
+                      size="square"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-gray-900 truncate">
+                      {item.title}
+                    </h3>
+                    {item.variant && (
+                      <p className="text-sm text-gray-600">
+                        {item.variant.title}
+                      </p>
+                    )}
+                    {item.metadata && Object.keys(item.metadata).length > 0 && (
+                      <div className="mt-2 text-xs text-gray-500">
+                        {Object.entries(item.metadata).map(([key, value]) => (
+                          <div key={key}>
+                            {key}: {String(value)}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    <p className="text-sm text-gray-500 mt-1">
+                      Quantity: {item.quantity}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-semibold text-gray-900">
+                      {convertToLocale({
+                        amount: item.unit_price * item.quantity,
+                        currency_code: order.currency_code,
+                      })}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      {convertToLocale({
+                        amount: item.unit_price,
+                        currency_code: order.currency_code,
+                      })}{" "}
+                      each
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Order Summary */}
+          <div className="border-t border-gray-200 pt-6">
+            <h2 className="text-xl font-bold text-brand-navy mb-4">
+              Order Summary
+            </h2>
+            <div className="space-y-3">
+              <div className="flex justify-between text-gray-600">
+                <span>Subtotal (excl. taxes)</span>
+                <span>
+                  {convertToLocale({
+                    amount: order.subtotal ?? 0,
+                    currency_code: order.currency_code,
+                  })}
+                </span>
+              </div>
+              {order.discount_total > 0 && (
+                <div className="flex justify-between text-green-600">
+                  <span>Discounts</span>
+                  <span>
+                    -
+                    {convertToLocale({
+                      amount: order.discount_total,
+                      currency_code: order.currency_code,
+                    })}
+                  </span>
+                </div>
+              )}
+              <div className="flex justify-between text-gray-600">
+                <span>Shipping</span>
+                <span>
+                  {order.shipping_total === 0
+                    ? "FREE"
+                    : convertToLocale({
+                        amount: order.shipping_total ?? 0,
+                        currency_code: order.currency_code,
+                      })}
+                </span>
+              </div>
+              <div className="flex justify-between text-gray-600">
+                <span>Taxes</span>
+                <span>
+                  {convertToLocale({
+                    amount: order.tax_total ?? 0,
+                    currency_code: order.currency_code,
+                  })}
+                </span>
+              </div>
+              <div className="flex justify-between text-xl font-bold text-brand-navy pt-3 border-t border-gray-200">
+                <span>Total</span>
+                <span>
+                  {convertToLocale({
+                    amount: order.total ?? 0,
+                    currency_code: order.currency_code,
+                  })}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Payment Details */}
+          {order.payment_collections && order.payment_collections.length > 0 && (
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <h3 className="text-sm font-semibold text-gray-700 mb-2">
+                Payment Method
+              </h3>
+              {order.payment_collections.map((collection) =>
+                collection.payments?.map((payment) => (
+                  <p key={payment.id} className="text-sm text-gray-600 capitalize">
+                    {payment.provider_id} - {payment.amount ? convertToLocale({
+                      amount: payment.amount,
+                      currency_code: order.currency_code,
+                    }) : ""}
+                  </p>
+                ))
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4">
+          <LocalizedClientLink
+            href="/store"
+            className="inline-flex items-center justify-center px-8 py-3 bg-brand-cyan hover:bg-brand-blue text-white font-semibold rounded-lg transition-colors"
+          >
+            Continue Shopping
+          </LocalizedClientLink>
+          <LocalizedClientLink
+            href="/account/orders"
+            className="inline-flex items-center justify-center px-8 py-3 bg-white hover:bg-gray-50 text-brand-navy font-semibold rounded-lg border-2 border-brand-navy transition-colors"
+          >
+            View All Orders
+          </LocalizedClientLink>
+        </div>
+
+        {/* Help Section */}
+        <div className="mt-12 text-center">
+          <p className="text-sm text-gray-600 mb-2">
+            Need help with this order? Contact us at{" "}
+            <a
+              href="mailto:Printqueen3d@gmail.com"
+              className="text-brand-cyan hover:text-brand-blue font-semibold"
+            >
+              Printqueen3d@gmail.com
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   )
 }
-
-export default OrderDetailsTemplate
