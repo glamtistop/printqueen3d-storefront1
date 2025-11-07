@@ -112,19 +112,29 @@ export default async function Footer() {
             </LocalizedClientLink>
             <ul className="space-y-2 text-sm mt-4">
               <li>
-                <a href="#" className="text-gray-300 hover:text-brand-green transition-colors">Terms of Service</a>
+                <LocalizedClientLink href="/terms" className="text-gray-300 hover:text-brand-green transition-colors">
+                  Terms of Service
+                </LocalizedClientLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-brand-green transition-colors">Refund Policy</a>
+                <LocalizedClientLink href="/refund-policy" className="text-gray-300 hover:text-brand-green transition-colors">
+                  Refund Policy
+                </LocalizedClientLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-brand-green transition-colors">Shipping Policy</a>
+                <LocalizedClientLink href="/shipping-policy" className="text-gray-300 hover:text-brand-green transition-colors">
+                  Shipping Policy
+                </LocalizedClientLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-brand-green transition-colors">Product Care</a>
+                <LocalizedClientLink href="/product-care" className="text-gray-300 hover:text-brand-green transition-colors">
+                  Product Care
+                </LocalizedClientLink>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-brand-green transition-colors">Privacy Policy</a>
+                <LocalizedClientLink href="/privacy-policy" className="text-gray-300 hover:text-brand-green transition-colors">
+                  Privacy Policy
+                </LocalizedClientLink>
               </li>
             </ul>
           </div>
