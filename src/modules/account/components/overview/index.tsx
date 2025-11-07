@@ -129,7 +129,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
               {orders.slice(0, 5).map((order) => (
                 <LocalizedClientLink
                   key={order.id}
-                  href={`/account/orders/details/${order.id}`}
+                  href={`/account/orders/${order.id}`}
                   className="block"
                   data-testid="order-wrapper"
                 >
