@@ -28,39 +28,69 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
 
   return (
     <>
+      {/* Main Product Section - Compact Side-by-Side on Desktop */}
       <div
-        className="content-container flex flex-col small:flex-row small:items-start py-6 relative"
+        className="content-container py-8"
         data-testid="product-container"
       >
-        <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
-          <ProductInfo product={product} />
-          <ProductTabs product={product} />
-        </div>
-        <div className="block w-full relative">
-          <ImageGallery images={product?.images || []} />
-        </div>
-        <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-12">
-          <ProductOnboardingCta />
-          <Suspense
-            fallback={
-              <ProductActions
-                disabled={true}
-                product={product}
-                region={region}
-              />
-            }
-          >
-            <ProductActionsWrapper id={product.id} region={region} />
-          </Suspense>
+        <div className="flex flex-col lg:flex-row lg:items-start gap-6 max-w-6xl mx-auto">
+          {/* Image Gallery - Left side on desktop */}
+          <div className="w-full lg:w-1/2">
+            <ImageGallery images={product?.images || []} />
+          </div>
+
+          {/* Product Info + Actions - Right side on desktop */}
+          <div className="w-full lg:w-1/2 flex flex-col gap-6">
+            {/* Product Title & Description */}
+            <div className="flex flex-col gap-3">
+              <h1 className="font-display text-2xl md:text-3xl font-bold bg-gradient-to-r from-brand-pink via-brand-orange to-brand-yellow bg-clip-text text-transparent">
+                {product.title}
+              </h1>
+              {product.description && (
+                <p className="text-base text-gray-700 leading-relaxed">
+                  {product.description}
+                </p>
+              )}
+            </div>
+
+            {/* Product Actions */}
+            <div>
+              <ProductOnboardingCta />
+              <Suspense
+                fallback={
+                  <ProductActions
+                    disabled={true}
+                    product={product}
+                    region={region}
+                  />
+                }
+              >
+                <ProductActionsWrapper id={product.id} region={region} />
+              </Suspense>
+            </div>
+          </div>
         </div>
       </div>
-      <div
-        className="content-container my-16 small:my-32"
-        data-testid="related-products-container"
-      >
-        <Suspense fallback={<SkeletonRelatedProducts />}>
-          <RelatedProducts product={product} countryCode={countryCode} />
-        </Suspense>
+
+      {/* Customer Reviews Section */}
+      <div className="content-container py-12 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-display text-2xl font-bold text-brand-navy mb-6">
+            ⭐ Customer Reviews
+          </h2>
+          <div className="bg-white rounded-xl p-8 border-2 border-gray-200">
+            <p className="text-gray-600 text-center">
+              No reviews yet. Be the first to review this product!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Product Information & Shipping at Bottom */}
+      <div className="content-container py-12">
+        <div className="max-w-6xl mx-auto">
+          <ProductTabs product={product} />
+        </div>
       </div>
     </>
   )

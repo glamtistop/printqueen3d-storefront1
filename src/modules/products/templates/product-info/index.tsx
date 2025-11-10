@@ -1,6 +1,4 @@
 import { HttpTypes } from "@medusajs/types"
-import { Heading, Text } from "@medusajs/ui"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 type ProductInfoProps = {
   product: HttpTypes.StoreProduct
@@ -8,30 +6,28 @@ type ProductInfoProps = {
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
   return (
-    <div id="product-info">
-      <div className="flex flex-col gap-y-4 lg:max-w-[500px] mx-auto">
-        {product.collection && (
-          <LocalizedClientLink
-            href={`/collections/${product.collection.handle}`}
-            className="text-medium text-ui-fg-muted hover:text-ui-fg-subtle"
+    <div id="product-info" className="w-full">
+      {/* Compact Banner-Style Header */}
+      <div className="bg-gradient-to-r from-brand-pink via-brand-orange to-brand-yellow py-8 px-4 rounded-2xl shadow-lg">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Product Title */}
+          <h1 
+            className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3"
+            data-testid="product-title"
           >
-            {product.collection.title}
-          </LocalizedClientLink>
-        )}
-        <Heading
-          level="h2"
-          className="text-3xl leading-10 text-ui-fg-base"
-          data-testid="product-title"
-        >
-          {product.title}
-        </Heading>
+            {product.title}
+          </h1>
 
-        <Text
-          className="text-medium text-ui-fg-subtle whitespace-pre-line"
-          data-testid="product-description"
-        >
-          {product.description}
-        </Text>
+          {/* Product Description */}
+          {product.description && (
+            <p 
+              className="text-base md:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed whitespace-pre-line"
+              data-testid="product-description"
+            >
+              {product.description}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   )
