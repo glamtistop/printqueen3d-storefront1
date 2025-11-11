@@ -7,6 +7,7 @@ import ProductTabs from "@modules/products/components/product-tabs"
 import RelatedProducts from "@modules/products/components/related-products"
 import ProductInfo from "@modules/products/templates/product-info"
 import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-related-products"
+import MockReviews from "@modules/products/components/mock-reviews"
 import { notFound } from "next/navigation"
 import ProductActionsWrapper from "./product-actions-wrapper"
 import { HttpTypes } from "@medusajs/types"
@@ -74,16 +75,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
 
       {/* Customer Reviews Section */}
       <div className="content-container py-12 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="font-display text-2xl font-bold text-brand-navy mb-6">
-            ⭐ Customer Reviews
-          </h2>
-          <div className="bg-white rounded-xl p-8 border-2 border-gray-200">
-            <p className="text-gray-600 text-center">
-              No reviews yet. Be the first to review this product!
-            </p>
-          </div>
-        </div>
+        <MockReviews product={product} />
       </div>
 
       {/* Product Information & Shipping at Bottom */}
