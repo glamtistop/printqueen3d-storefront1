@@ -50,9 +50,9 @@ const generateProductReviews = (product: HttpTypes.StoreProduct): Review[] => {
       },
       {
         author: "Jennifer L.",
-        rating: 4,
-        title: "Exactly what I needed",
-        content: "Works perfectly with my Square reader. The design is clean and fits well on my counter. Only wish it came in more color options, but the quality is top-notch.",
+        rating: 5,
+        title: "Exactly what I needed!",
+        content: "Works perfectly with my Square reader. The design is clean and fits beautifully on my counter. The quality is absolutely top-notch and my customers love how easy it is to pay. Best purchase I've made for my business!",
         verified: true,
         daysAgo: 21
       },
