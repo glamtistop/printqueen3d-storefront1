@@ -1,0 +1,110 @@
+import { Resend } from 'resend';
+import { NextResponse } from 'next/server';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function POST(request: Request) {
+  try {
+    const { orderId, customerEmail, customerName, orderTotal, orderItems } = await request.json();
+
+    const { data, error } = await resend.emails.send({
+      from: 'Print Queen 3D <orders@printqueen3d.com>',
+      to: [customerEmail],
+      subject: `Order Confirmation #${orderId}`,
+      html: `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f4f4f4;
+              margin: 0;
+              padding: 20px;
+            }
+            .container {
+              max-width: 600px;
+              margin: 0 auto;
+              background: white;
+              padding: 30px;
+              border-radius: 10px;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+            h1 {
+              color: #FF1493;
+              margin-bottom: 20px;
+            }
+            .order-details {
+              background: #FFF9E6;
+              padding: 20px;
+              border-radius: 8px;
+              margin: 20px 0;
+            }
+            .item {
+              padding: 10px 0;
+              border-bottom: 1px solid #eee;
+            }
+            .footer {
+              text-align: center;
+              color: #888;
+              font-size: 12px;
+              margin-top: 30px;
+            }
+            .total {
+              font-size: 24px;
+              font-weight: bold;
+              color: #32CD32;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <h1>🎉 Thank You for Your Order!</h1>
+            <p>Hi ${customerName},</p>
+            <p>We've received your order and we're excited to create your custom 3D print!</p>
+            
+            <div class="order-details">
+              <h3>Order Details</h3>
+              <p><strong>Order Number:</strong> ${orderId}</p>
+              <p><strong>Order Total:</strong> <span class="total">$${orderTotal}</span></p>
+            </div>
+            
+            <h3>Items Ordered:</h3>
+            ${orderItems.map((item: any) => `
+              <div class="item">
+                <strong>${item.title}</strong><br>
+                Quantity: ${item.quantity}<br>
+                ${item.metadata?.custom_base ? `Base: ${item.metadata.custom_base}<br>` : ''}
+                ${item.metadata?.custom_colors ? `Colors: ${item.metadata.custom_colors.join(', ')}<br>` : ''}
+                Price: $${(item.unit_price / 100).toFixed(2)}
+              </div>
+            `).join('')}
+            
+            <p style="margin-top: 30px;">
+              <strong>What's Next?</strong><br>
+              We'll start working on your order right away! You'll receive a shipping confirmation 
+              email in 3-5 business days once your custom print is ready. If you selected pickup we will notify you when your order is ready for pickup!
+            </p>
+            
+            <p>Questions? Reply to this email or contact us at info@printqueen3d.com</p>
+            
+            <div class="footer">
+              <p><strong>Print Queen 3D</strong></p>
+              <p>Los Angeles, CA</p>
+              <p>www.printqueen3d.com</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `,
+    });
+
+    if (error) {
+      return NextResponse.json({ error }, { status: 400 });
+    }
+
+    return NextResponse.json({ data });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
+}
